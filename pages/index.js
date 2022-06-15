@@ -1,9 +1,18 @@
 import Head from 'next/head'
 import Header from '../components/Header'
 import Nav from '../components/Nav'
+import Results from '../components/Results'
+import requests from '../utills/requests'
 
 
-export default function Home() {
+
+export default function Home({results}) {
+  // just to see an array of size 20 with our data (by passing {props} to Home)
+  //console.log(props)
+  console.log(results)
+  
+  //but i could de-structure by passing {results} to Home
+
   return (
     <div>
       <Head>
@@ -13,8 +22,31 @@ export default function Home() {
       </Head>
       <Header />
       <Nav />
+      
+      <Results results={results} /> 
 
 
     </div>
   )
 }
+
+//this is what gets rendered on the server 
+// it happens first then it gets rendered to the client
+// it happens before the client side (the above code)
+export async function getServerSideProps(context) {
+  const genre = context.query.genre;
+  const request = await fetch(
+    `https://api.themoviedb.org/3/${
+      requests[genre]?.url || requests.fetchTrending.url
+    }`   
+    
+  ).then(res => res.json());
+
+  return {
+    props: {
+      results: request.results,
+    },
+  }
+
+}
+ 
