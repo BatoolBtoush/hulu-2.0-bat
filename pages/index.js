@@ -9,7 +9,7 @@ import requests from '../utills/requests'
 export default function Home({results}) {
   // just to see an array of size 20 with our data (by passing {props} to Home)
   //console.log(props)
-  console.log(results)
+  // console.log(results)
   
   //but i could de-structure by passing {results} to Home
 
