@@ -11,14 +11,12 @@ function Nav() {
 
   return (
     <nav className='relative'>
-      <div className='flex px-10 sm:px-20 text-2xl whitespace-nowrap space-x-10 sm:space-20 
-      overflow-x-scroll last-pr-24 scrollbar-hide'>
+      <div className='flex px-10 space-x-10 overflow-x-scroll text-2xl sm:px-20 whitespace-nowrap sm:space-20 last-pr-24 scrollbar-hide'>
         {Object.entries(requests).map(([key, { title, url }]) => (
           <h2 
           key={key} 
           onClick={() => router.push(`/?genre=${key}`)}
-          className='cursor-pointer transition duration-100 hover:text-white active:text-red-500 
-          transform hover:scale-125 '>
+          className='transition duration-100 transform cursor-pointer hover:text-white active:text-red-500 hover:scale-125 '>
             {title}
             </h2>
         ))}
