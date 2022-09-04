@@ -40,7 +40,7 @@ export async function getServerSideProps(context) {
       requests[genre]?.url || requests.fetchTrending.url
     }`   
     
-  ).then(res => res.json());
+  ).then(res => res.json()).catch(e => console.log(e))
 
   return {
     props: {
